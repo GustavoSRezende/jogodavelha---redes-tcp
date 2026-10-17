@@ -58,7 +58,7 @@ function entrarPartida(ip) {
         socketAtivo = cliente;
         configurarSocket(cliente);
         imprimirTabuleiro();
-        gerenciarTurnos(); // O O aguarda a jogada do X
+        gerenciarTurnos(); 
         console.log("Aguarde o adversário (X) fazer a primeira jogada.");
     });
 
@@ -78,7 +78,6 @@ function configurarSocket(socket) {
             const c = parseInt(partes[1]);
             const simboloAdversario = meuSimbolo === 'X' ? 'O' : 'X';
             
-            // Regista a jogada do adversário no nosso tabuleiro
             tabuleiro[l][c] = simboloAdversario;
             console.log(`\nO adversário jogou na posição: ${l},${c}`);
             imprimirTabuleiro();
@@ -94,9 +93,15 @@ function configurarSocket(socket) {
         console.log("\n[!] O adversário encerrou a conexão.");
         process.exit();
     });
+
+    socket.on('error', (err) => {
+    console.log("\n[!] Conexão perdida com o adversário.");
+    process.exit();
+});
 }
 
 function imprimirTabuleiro() {
+    console.clear();
     console.log("\n  0   1   2");
     console.log(`0 ${tabuleiro[0][0]} | ${tabuleiro[0][1]} | ${tabuleiro[0][2]}`);
     console.log("  ---------");
@@ -110,7 +115,6 @@ function gerenciarTurnos() {
         rl.question("Sua vez! Digite linha,coluna (ex: 0,2): ", (resposta) => {
             const partes = resposta.split(',');
             
-            // Validação do formato
             if (partes.length === 2) {
                 const l = parseInt(partes[0].trim());
                 const c = parseInt(partes[1].trim());
