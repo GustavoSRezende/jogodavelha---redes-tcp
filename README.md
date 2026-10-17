@@ -8,7 +8,6 @@ Practical assignment for the Computer Networks course. It consists of a multipla
 * Real-time gameplay between two distinct terminal instances.
 * Manual parsing of text-based coordinates sent over the network.
 * Game rules validation (win conditions, draws, and invalid moves).
-* Graceful connection termination and error handling.
 
 ## How to run
 
