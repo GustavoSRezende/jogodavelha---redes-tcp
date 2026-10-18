@@ -1,3 +1,6 @@
+//Gustavo Sbardelotto Rezende
+//Vitor Rolim Rubio Auricchio
+
 const net = require('net');
 const readline = require('readline');
 
